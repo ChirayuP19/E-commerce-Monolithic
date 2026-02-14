@@ -1,8 +1,10 @@
 package com.ecommerce.project.Service;
 
 import com.ecommerce.project.model.Category;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,10 +30,8 @@ public class CategoryServiceImpl implements CategoryService{
     public String DeleteCategory(Long id) {
         Category category = categories.stream()
                 .filter(x -> x.getCategoryId().equals(id))
-                .findFirst().orElse(null);
-        if(category==null)
-            return "Category ID Not Found in DATABASE";
-
+                .findFirst()
+                .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"ID INVALID"));
         categories.remove(category);
         return "Category with Id "+id+" remove Successfully";
     }
