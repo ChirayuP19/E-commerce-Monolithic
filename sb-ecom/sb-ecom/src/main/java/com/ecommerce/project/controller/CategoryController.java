@@ -28,14 +28,24 @@ public class CategoryController {
         return new ResponseEntity<>("Category added successfully",HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/api/public/categories")
-    public ResponseEntity<String> deleteCategory(@RequestParam Long id){
+    @DeleteMapping("/api/public/categories/{id}")
+    public ResponseEntity<String> deleteCategory(@PathVariable Long id){
        try {
            return new ResponseEntity<>(categoryService.DeleteCategory(id), HttpStatus.NO_CONTENT);
        } catch (ResponseStatusException e) {
            return new ResponseEntity<>(e.getReason(),e.getStatusCode());
        }
 
+    }
+
+    @PutMapping("/api/public/categories/{id}")
+    public ResponseEntity<?> updateByID(@PathVariable Long id,
+                                        @RequestBody Category category){
+        try {
+            return new ResponseEntity<>(categoryService.updateCategoryById(category,id),HttpStatus.OK);
+        } catch (ResponseStatusException e) {
+            return new ResponseEntity<>(e.getReason(),e.getStatusCode());
+        }
     }
 
 }
