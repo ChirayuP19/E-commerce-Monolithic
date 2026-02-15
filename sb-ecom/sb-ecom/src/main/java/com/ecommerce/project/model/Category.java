@@ -18,5 +18,6 @@ public class Category {
 
     @NotBlank(message = "categoryName can't be null")
     @Size(min = 3,message = "Category  name must Contain atleast 3 characters")
+    @Column(unique = true)
     private String categoryName;
 }
