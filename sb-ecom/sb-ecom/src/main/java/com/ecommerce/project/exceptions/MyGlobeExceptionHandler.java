@@ -24,11 +24,17 @@ public class MyGlobeExceptionHandler {
                     response.put(fieldName,message);
                 });
 
-        Map<String,Object> response1=new HashMap<>();
-        response1.put("TimeStamp", LocalDateTime.now());
-        response1.put("Status",HttpStatus.BAD_REQUEST);
-        response1.put("Message",methodArgumentNotValidException.getFieldError().getDefaultMessage());
+        Map<String,Object> responsePrint=new HashMap<>();
+        responsePrint.put("TimeStamp", LocalDateTime.now());
+        responsePrint.put("Status",HttpStatus.BAD_REQUEST);
+        responsePrint.put("Message",methodArgumentNotValidException.getFieldError().getDefaultMessage());
 
-        return new ResponseEntity<>(response1, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(responsePrint, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<String> myResourceNotFoundException(ResourceNotFoundException e){
+            String message=e.getMessage();
+            return new ResponseEntity<>(message,HttpStatus.NOT_FOUND);
     }
 }
