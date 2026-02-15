@@ -1,0 +1,45 @@
+version: "3.9"
+
+services:
+  postgres:
+    container_name: sb-postgres
+    image: postgres:14
+    environment:
+      POSTGRES_USER: chirayu
+      POSTGRES_PASSWORD: chirayu
+      POSTGRES_DB: category
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      -   sb-postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5434:5432"
+    networks:
+      - sb_network
+    restart: unless-stopped
+
+  pgadmin:
+    container_name: sb-postgres_pgadmin
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: chirayu010675@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: chirayu
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - sb-pgadmin_data:/var/lib/pgadmin
+    ports:
+      - "5051:80"
+    networks:
+      - sb_network
+    restart: unless-stopped
+    depends_on:
+      - postgres
+
+networks:
+  sb_network:
+    driver: bridge
+
+volumes:
+  sb-postgres_data:
+  sb-pgadmin_data:
+
+
