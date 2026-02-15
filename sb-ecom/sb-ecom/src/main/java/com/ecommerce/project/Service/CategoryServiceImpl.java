@@ -43,18 +43,14 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public Category updateCategoryById(Category category,Long id) {
-        List<Category> categories = categoryRepository.findAll();
+        Optional<Category> byId = categoryRepository.findById(id);
 
-        Optional<Category> categoryOptional = categories.stream()
-                .filter(x -> x.getCategoryId().equals(id))
-                .findFirst();
+        Category savedCategory = byId.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Category ID NOT_FOUND"));
 
-        if(categoryOptional.isPresent()){
-            Category existingCategory = categoryOptional.get();
-            existingCategory.setCategoryName(category.getCategoryName());
-            Category saved = categoryRepository.save(existingCategory);
-            return saved;
-        }
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Category Id Invalid");
+        savedCategory.setCategoryName(category.getCategoryName());
+        Category save = categoryRepository.save(savedCategory);
+        return save;
+
+
     }
 }
