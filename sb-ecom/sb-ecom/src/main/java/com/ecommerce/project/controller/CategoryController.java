@@ -31,22 +31,13 @@ public class CategoryController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteCategory(@PathVariable Long id){
-       try {
            return new ResponseEntity<>(categoryService.DeleteCategory(id), HttpStatus.NO_CONTENT);
-       } catch (ResponseStatusException e) {
-           return new ResponseEntity<>(e.getReason(),e.getStatusCode());
-       }
-
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateByID(@PathVariable Long id,
                                         @RequestBody Category category){
-        try {
             return new ResponseEntity<>(categoryService.updateCategoryById(category,id),HttpStatus.OK);
-        } catch (ResponseStatusException e) {
-            return new ResponseEntity<>(e.getReason(),e.getStatusCode());
-        }
     }
 
 }
