@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class CategoryServiceImpl implements CategoryService{
@@ -51,24 +50,24 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public String DeleteCategory(Long id) {
+    public CategoryDTO DeleteCategory(Long id) {
         return categoryRepository.findById(id)
                 .map(x->{
                     categoryRepository.deleteById(id);
-                    return "Category with Id " +id +" removed successfully";
+                    return modelMapper.map(x,CategoryDTO.class);
                 }).orElseThrow(()->new ResourceNotFoundException("Category","categoryId",id));
     }
 
     @Override
-    public Category updateCategoryById(Category category,Long id) {
+    public CategoryDTO updateCategoryById(CategoryDTO categoryDTO,Long id) {
+
         Optional<Category> byId = categoryRepository.findById(id);
 
+        CategoryDTO savedCategoryDTO=modelMapper.map(byId,CategoryDTO.class);
         Category savedCategory = byId.orElseThrow(() -> new ResourceNotFoundException("Category","categoryId",id));
 
-        savedCategory.setCategoryName(category.getCategoryName());
+        savedCategory.setCategoryName(categoryDTO.getCategoryName());
         Category save = categoryRepository.save(savedCategory);
-        return save;
-
-
+        return modelMapper.map(save,CategoryDTO.class);
     }
 }
