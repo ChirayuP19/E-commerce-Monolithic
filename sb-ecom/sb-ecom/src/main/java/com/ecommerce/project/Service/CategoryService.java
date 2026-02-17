@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface CategoryService {
 
-    CategoryResponse getAllCategory();
+    CategoryResponse getAllCategory(Integer pageNumber, Integer pageSize,String sortBy,String sortOrder);
 
    CategoryDTO CreateCategory(CategoryDTO categoryDTO);
 
