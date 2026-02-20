@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+<<<<<<< HEAD
     <annotationProcessing>
       <profile name="Annotation profile for sb-ecom" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -17,5 +18,10 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="sb-ecom" options="-parameters" />
     </option>
+=======
+    <bytecodeTargetLevel>
+      <module name="sb-ecom" target="17" />
+    </bytecodeTargetLevel>
+>>>>>>> devlopment-creating
   </component>
 </project>
