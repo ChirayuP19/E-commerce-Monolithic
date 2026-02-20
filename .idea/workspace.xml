@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="62ba6584-1fc2-4477-bb33-23b1907c66cd" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/sb-ecom/sb-ecom/src/main/java/com/ecommerce/project/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sb-ecom/sb-ecom/src/main/java/com/ecommerce/project/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sb-ecom/sb-ecom/src/main/java/com/ecommerce/project/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/sb-ecom/sb-ecom/src/main/java/com/ecommerce/project/model/Category.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "ChirayuP19"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/ChirayuP19/E-commerce-Monolithic.git",
+    "accountId": "f9858648-ac0e-483e-a9f1-1163e5561aa3"
+  }
+}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="39umcdP9eDevLAYB7UqgbBEJ5zE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;devlopment-creating&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/chira/Desktop/JAVA/e-commerce-Monolithic&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;
+  }
+}</component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="62ba6584-1fc2-4477-bb33-23b1907c66cd" name="Changes" comment="" />
+      <created>1771554410274</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1771554410274</updated>
+    </task>
+    <servers />
+  </component>
+</project>
