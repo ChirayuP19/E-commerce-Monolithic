@@ -14,3 +14,4 @@ project:
 app:
   jwtSecret: hYGfufhViLAeahV3RUlgiNY2SuwJjY2wVtB5L/QajzQ=
   jwtExpirationMs: 360000
+  jwtCookie: springBootEcom
