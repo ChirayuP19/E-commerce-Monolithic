@@ -11,3 +11,6 @@ spring:
       ddl-auto: update
 project:
   image: images/
+app:
+  jwtSecret: hYGfufhViLAeahV3RUlgiNY2SuwJjY2wVtB5L/QajzQ=
+  jwtExpirationMs: 360000
