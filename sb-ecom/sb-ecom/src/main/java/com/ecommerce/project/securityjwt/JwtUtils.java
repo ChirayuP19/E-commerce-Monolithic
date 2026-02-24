@@ -34,6 +34,12 @@ public class JwtUtils {
     @Value("${app.jwtCookie}")
     private String jwtCookie;
 
+    @Value("${app.refreshExpirationMs}")
+    private long refreshExpirationMs;
+
+    @Value("${app.refreshCookie}")
+    private String refreshCookie;
+
 //    public String getJwtFromHeader(HttpServletRequest request){
 //        String bearerToken=request.getHeader("Authorization");
 //        log.debug("Authorization Header {} ",bearerToken);
@@ -54,7 +60,7 @@ public class JwtUtils {
     public ResponseCookie generateJwtCookie(UserDetailsImpl userPrincipal){
         String jwt = generateTokenFromUsername(userPrincipal.getUsername());
         ResponseCookie cookie=ResponseCookie.from(jwtCookie,jwt)
-                .path("/api").maxAge(6*60)
+                .path("/").maxAge(6*60)
                 .httpOnly(false)
                 .build();
         return cookie;
@@ -103,5 +109,34 @@ public class JwtUtils {
         }
         return false;
     }
+
+    public ResponseCookie generateRefreshCookie(String refresh){
+        return ResponseCookie.from(refreshCookie,refresh)
+                .path("/api")
+                .maxAge(refreshExpirationMs/1000)
+                .httpOnly(false)
+                .build();
+    }
+
+    public ResponseCookie getCleanJwtCookie(){
+        return ResponseCookie.from(refreshCookie,null)
+                .path("/api")
+                .maxAge(0)
+                .build();
+    }
+    public String getRefreshTokenFromCookie(HttpServletRequest request){
+        Cookie cookie = WebUtils.getCookie(request, refreshCookie);
+        if (cookie!=null){
+            return cookie.getValue();
+        }
+        return null;
+    }
+
+    public ResponseCookie getCleanRefreshCookie(){
+        return ResponseCookie.from(refreshCookie,null)
+                .path("/api")
+                .build();
+    }
+
 
 }
