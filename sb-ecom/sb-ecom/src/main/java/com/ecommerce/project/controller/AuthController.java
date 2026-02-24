@@ -24,10 +24,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -128,6 +125,30 @@ public class AuthController {
         user.setRoles(roles);
         userRepository.save(user);
         return ResponseEntity.ok(new MessageResponse("User registered Successfully"));
+    }
 
+    @GetMapping("/username")
+    public String currentUsername(Authentication authentication){
+        if(authentication !=null)
+           return authentication.getName();
+        else
+            return "";
+    }
+
+    @GetMapping("/userDetails")
+    public ResponseEntity<?> getUserDetails(Authentication authentication){
+        if (authentication != null) {
+            UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+
+            List<String> roles =userDetails.getAuthorities()
+                    .stream().map(GrantedAuthority::getAuthority)
+                    .toList();
+
+            UserInfoResponse userInfoResponse = new UserInfoResponse(userDetails.getId(), userDetails.getUsername(), roles, LocalDateTime.now());
+
+            return ResponseEntity.ok().body(userInfoResponse);
+        }
+
+        return new ResponseEntity<>("JWT Cookie is Invalid or Expired",HttpStatus.BAD_REQUEST);
     }
 }
