@@ -60,7 +60,7 @@ public class JwtUtils {
     public ResponseCookie generateJwtCookie(UserDetailsImpl userPrincipal){
         String jwt = generateTokenFromUsername(userPrincipal.getUsername());
         ResponseCookie cookie=ResponseCookie.from(jwtCookie,jwt)
-                .path("/").maxAge(6*60)
+                .path("/api").maxAge(6*60)
                 .httpOnly(false)
                 .build();
         return cookie;
@@ -119,9 +119,8 @@ public class JwtUtils {
     }
 
     public ResponseCookie getCleanJwtCookie(){
-        return ResponseCookie.from(refreshCookie,null)
+        return ResponseCookie.from(jwtCookie,null)
                 .path("/api")
-                .maxAge(0)
                 .build();
     }
     public String getRefreshTokenFromCookie(HttpServletRequest request){
