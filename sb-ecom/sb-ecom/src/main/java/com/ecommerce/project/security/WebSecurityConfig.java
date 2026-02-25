@@ -2,10 +2,12 @@ package com.ecommerce.project.security;
 
 import com.ecommerce.project.securityjwt.AuthEntryPointJwt;
 import com.ecommerce.project.securityjwt.AuthTokenFilter;
+import com.ecommerce.project.securityjwt.oauthHandler.CustomOAuth2SuccessHandler;
 import com.ecommerce.project.securityjwt.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -27,8 +29,13 @@ public class WebSecurityConfig  {
 
     @Autowired
     UserDetailsServiceImpl userDetailsService;
+
     @Autowired
     private AuthEntryPointJwt unauthorizedHandler;
+
+    @Autowired
+    @Lazy
+    private CustomOAuth2SuccessHandler customOAuth2SuccessHandler;
 
     @Bean
     public AuthTokenFilter authTokenJwtTokenFilter(){
@@ -67,7 +74,10 @@ public class WebSecurityConfig  {
                                 .requestMatchers("/api/v1/admin/**").permitAll()
                                 .requestMatchers("/api/v1/test/**").permitAll()
                                 .requestMatchers("/images/**").permitAll()
-                        .anyRequest().authenticated());
+                                .requestMatchers("/api/v1/auth/oauth2/success").permitAll()
+                                .requestMatchers("/oauth2/authorization/**").permitAll()
+                        .anyRequest().authenticated())
+                        .oauth2Login(oauth2->oauth2.successHandler(customOAuth2SuccessHandler));
 
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(authTokenJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

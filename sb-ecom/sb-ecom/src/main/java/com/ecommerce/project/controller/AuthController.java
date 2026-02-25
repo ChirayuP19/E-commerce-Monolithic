@@ -204,4 +204,9 @@ public class AuthController {
                 .header(HttpHeaders.SET_COOKIE,cleanRefreshCookie.toString()).body(new MessageResponse("You've been signed out!"));
 
     }
+
+    @GetMapping("/oauth2/success")
+    public ResponseEntity<?> oauthSuccess(){
+        return ResponseEntity.ok("Google Login SuccessFul ! Cookie have been set in Postman/Browser.");
+    }
 }
