@@ -9,6 +9,18 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+  aop:
+    auto:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            scope:
+              - email
+              - profile
 project:
   image: images/
 app:
@@ -17,3 +29,10 @@ app:
   jwtCookie: springBootEcom
   refreshExpirationMs: 604800000
   refreshCookie: refreshToken
+
+logging:
+  level:
+    org:
+      springframework:
+        security: debug
+
