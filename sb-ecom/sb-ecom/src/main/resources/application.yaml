@@ -30,9 +30,4 @@ app:
   refreshExpirationMs: 604800000
   refreshCookie: refreshToken
 
-logging:
-  level:
-    org:
-      springframework:
-        security: debug
 
