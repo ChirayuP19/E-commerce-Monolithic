@@ -170,6 +170,7 @@ public class AuthController {
     public ResponseEntity<?> refreshToken(HttpServletRequest request){
         String refreshToken = jwtUtils.getRefreshTokenFromCookie(request);
 
+
         if (refreshToken == null || refreshToken.isEmpty()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Refresh token missing");
         }
