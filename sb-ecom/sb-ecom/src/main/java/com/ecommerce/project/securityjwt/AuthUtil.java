@@ -15,7 +15,7 @@ public class AuthUtil {
 
     private final UserRepository userRepository;
 
-    public String loggedInEmail(){
+    public String loggedInEmail() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = userRepository.findByUsername(authentication.getName())
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found"));
@@ -30,7 +30,7 @@ public class AuthUtil {
         return user.getUserId();
     }
 
-    public User loggedInUser(){
+    public User loggedInUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return userRepository.findByUsername(authentication.getName())
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found"));
