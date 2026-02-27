@@ -65,6 +65,7 @@ public class CustomOAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHa
             Set<Role> roles = new HashSet<>();
             roles.add(userRole);
             newUser.setRoles(roles);
+
             return userRepository.save(newUser);
         });
 

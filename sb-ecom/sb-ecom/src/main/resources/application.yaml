@@ -24,10 +24,23 @@ spring:
 project:
   image: images/
 app:
-  jwtSecret: hYGfufhViLAeahV3RUlgiNY2SuwJjY2wVtB5L/QajzQ=
+  jwtSecret: ${JWT_SECRET}
   jwtExpirationMs: 360000
   jwtCookie: springBootEcom
   refreshExpirationMs: 604800000
   refreshCookie: refreshToken
+
+#logging:
+#  file:
+#    name: logs/sb-ecom.log
+#  level:
+#    root: info
+#    org.springframework: DEBUG
+#    org.springframework.security: DEBUG
+#    com.ecommerce.project: DEBUG
+
+
+
+
 
 
