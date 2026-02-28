@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @Table(name = "addresses")
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class Address {
 
     @Id
@@ -21,27 +23,27 @@ public class Address {
     private Long addressId;
 
     @NotBlank
-    @Size(min = 5,message = "Street name must be At least 5 Characters")
+    @Size(min = 5, message = "Street name must be At least 5 Characters")
     private String street;
 
     @NotBlank
-    @Size(min = 5,message = "Building name must be At least 5 Characters")
+    @Size(min = 5, message = "Building name must be At least 5 Characters")
     private String buildingName;
 
     @NotBlank
-    @Size(min = 3,message = "City name must be At least 3 Characters")
+    @Size(min = 3, message = "City name must be At least 3 Characters")
     private String city;
 
     @NotBlank
-    @Size(min = 2,message = "State name must be At least 2 Characters")
+    @Size(min = 2, message = "State name must be At least 2 Characters")
     private String state;
 
     @NotBlank
-    @Size(min = 2,message = "Country name must be At least 2 Characters")
+    @Size(min = 2, message = "Country name must be At least 2 Characters")
     private String country;
 
     @NotBlank
-    @Size(min = 6,message = "PostalCode name must be At least 6 Characters")
+    @Size(min = 6, message = "PostalCode name must be At least 6 Characters")
     private String postalCode;
 
     public Address(String postalCode, Long addressId, String street, String buildingName, String city, String state, String country) {
@@ -54,7 +56,7 @@ public class Address {
         this.country = country;
     }
 
-    @ToString.Exclude
-    @ManyToMany(mappedBy = "addresses")
-    private List<User> users=new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }
