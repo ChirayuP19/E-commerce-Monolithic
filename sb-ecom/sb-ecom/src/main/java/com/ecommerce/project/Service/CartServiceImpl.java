@@ -17,7 +17,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 @Service
@@ -196,9 +195,9 @@ public class CartServiceImpl implements CartService {
         cartItem.setProductPrice(product.getSpecialPrice());
         cart.setTotalPrice(cartPrice + (cartItem.getProductPrice() * cartItem.getQuantity()));
 
-         cartItem = cartItemRepository.save(cartItem);
+        cartItem = cartItemRepository.save(cartItem);
     }
-    
+
 
     private Cart createCart() {
         Cart userCart = cartRepository.findCartByEmail(authUtil.loggedInEmail());

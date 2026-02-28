@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface ProductService {
 
-    ProductDTO addProduct(Long categoryId,ProductDTO productDTO);
+    ProductDTO addProduct(Long categoryId, ProductDTO productDTO);
 
     ProductResponse getAllProduct(Integer pageNumber, Integer pageSize, String sortBy, String sortOrder);
 
