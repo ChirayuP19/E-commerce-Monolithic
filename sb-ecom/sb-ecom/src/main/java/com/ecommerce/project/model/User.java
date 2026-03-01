@@ -16,9 +16,9 @@ import java.util.Set;
 @NoArgsConstructor
 @Table(name = "users",
         uniqueConstraints = {
-        @UniqueConstraint(columnNames = "username"),
-        @UniqueConstraint(columnNames = "email")
-})
+                @UniqueConstraint(columnNames = "username"),
+                @UniqueConstraint(columnNames = "email")
+        })
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +30,7 @@ public class User {
     @Column(name = "username")
     private String username;
     @NotBlank
-    @Size(max=50)
+    @Size(max = 50)
     @Email
     @Column(name = "email")
     private String email;
@@ -49,31 +49,30 @@ public class User {
 
     @Getter
     @Setter
-    @ManyToMany(cascade = {CascadeType.MERGE},fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    private Set<Role> roles=new HashSet<>();
+    private Set<Role> roles = new HashSet<>();
 
     @ToString.Exclude
     @OneToMany(mappedBy = "user",
-            cascade = {CascadeType.PERSIST,CascadeType.MERGE},
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             orphanRemoval = true)
     private Set<Product> products;
 
     @Getter
     @Setter
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE},orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE}, orphanRemoval = true)
 //    @JoinTable(name = "user_address",
 //    joinColumns = @JoinColumn(name = "user_id"),
 //    inverseJoinColumns = @JoinColumn(name = "address_id"))
-    private List<Address> addresses=new ArrayList<>();
+    private List<Address> addresses = new ArrayList<>();
 
     @ToString.Exclude
-    @OneToOne(mappedBy = "user",cascade = {CascadeType.PERSIST,CascadeType.MERGE},orphanRemoval = true)
+    @OneToOne(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
     private Cart cart;
-
 
 
 }
