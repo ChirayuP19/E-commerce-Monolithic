@@ -1,4 +1,4 @@
-# 🛒 SpringBoot Ecommerce API
+# 🛒 SpringBoot Ecommerce API RBAC = Role Based Access Control
 
 A full-featured **RESTful Ecommerce Backend** built with Spring Boot, featuring JWT authentication, Google OAuth2, product management, cart, orders, and more — fully containerized with Docker.
 
