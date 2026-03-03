@@ -24,7 +24,7 @@ spring:
 project:
   image: images/
 app:
-  jwtSecret: ${JWT_SECRET}
+  jwtSecret: hYGfufhViLAeahV3RUlgiNY2SuwJjY2wVtB5L/QajzQ=
   jwtExpirationMs: 360000
   jwtCookie: springBootEcom
   refreshExpirationMs: 604800000
@@ -39,8 +39,9 @@ app:
 #    org.springframework.security: DEBUG
 #    com.ecommerce.project: DEBUG
 
+#server:
+#  port: 5000
 
-
-
-
-
+springdoc:
+  api-docs:
+    path: /v3/api-docs

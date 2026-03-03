@@ -76,6 +76,9 @@ public class WebSecurityConfig  {
                                 .requestMatchers("/images/**").permitAll()
                                 .requestMatchers("/api/v1/auth/oauth2/success").permitAll()
                                 .requestMatchers("/oauth2/authorization/**").permitAll()
+                                .requestMatchers("/v3/api-docs").permitAll()
+                                .requestMatchers("/swagger-ui/**").permitAll()
+                                .requestMatchers("/api-docs/**").permitAll()
                         .anyRequest().authenticated())
                         .oauth2Login(oauth2->oauth2.successHandler(customOAuth2SuccessHandler));
 
@@ -90,11 +93,12 @@ public class WebSecurityConfig  {
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer(){
         return (web -> web.ignoring().requestMatchers(
-                "/v2/api-docs",
+                "/v3/api-docs/**",
                 "/configuration/ui",
                 "/swagger-resources/**",
                 "/configuration/security",
                 "/swagger-ui.html",
+                "/swagger-ui/index.html",
                 "/webjars/**"
                 ));
     }
